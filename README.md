@@ -14,9 +14,9 @@
 * Töltsük ki a kívánt adatokkal, a megadott 	helyeken. A „Vissza” gomb megnyomásával visszatérhet a kezdőoldalra
   
 <p>
-<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/autoadd.PNG" width="270" align="left"/>
-<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/motoradd.PNG" width="270" align="center"/>
-<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/teheraautoadd.PNG" width="270" align="right"/>
+<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/autoadd.PNG" width="260" align="left"/>
+<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/motoradd.PNG" width="260" align="center"/>
+<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/teheraautoadd.PNG" width="260" align="right"/>
 </p>
 
 ## Jármű Törlése
