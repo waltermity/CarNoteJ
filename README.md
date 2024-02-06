@@ -16,7 +16,7 @@
 <p>
 <img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/autoadd.PNG" width="260" align="left"/>
 <img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/motoradd.PNG" width="260" align="center"/>
-<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/teheraautoadd.PNG" width="260" align="right"/>
+<img src="https://github.com/waltermity/CarNoteJ/blob/main/Pics/teheraautoadd.PNG" width="260" align="center"/>
 </p>
 
 ## Jármű Törlése
