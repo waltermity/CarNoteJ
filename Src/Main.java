@@ -41,7 +41,7 @@ public class Main {
 
             //Egyedi biztonsági konfig. beállítása a könyvtárnak, hogy olvashasson
             TypePermission typePermission = new AnyTypePermission();
-            TypePermission wildcardTypePermission = new WildcardTypePermission(new String[] {"C:\\Users\\waltierne.szabo.szil\\Desktop\\prog3\\NHF\\CarNoteJ\\CarNoteJ\\src"}); // Replace with the package name of your Jarmu class
+            TypePermission wildcardTypePermission = new WildcardTypePermission(new String[] {"----PATH_TO----\\CarNoteJ\\CarNoteJ\\src"}); // Replace with the package name of your Jarmu class
             xstream.addPermission(typePermission);
             xstream.addPermission(wildcardTypePermission);
 
