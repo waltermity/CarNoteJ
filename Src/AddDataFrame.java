@@ -47,7 +47,7 @@ public class AddDataFrame extends JFrame {
 
     jbvissza.addActionListener(
         new ActionListener() { // Vissza gombra action rendelés, bezárjuk (eltűntetjük),
-                               // visszahíhjuk a ShowFrame-et
+          // visszahíhjuk a ShowFrame-et
           @Override
           public void actionPerformed(ActionEvent e) {
             AddDataFrame.super.setVisible(false);

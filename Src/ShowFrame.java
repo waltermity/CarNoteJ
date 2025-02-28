@@ -140,9 +140,8 @@ public class ShowFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
               AddDataFrame adf =
-                  new AddDataFrame(
-                      jarmu); // Meghívjuk azt az ablakot ahol adatot tudunk hozzáadni,
-                              // paraméterként a kiválasztott járművet adjuk tovább
+                  new AddDataFrame(jarmu); // Meghívjuk azt az ablakot ahol adatot tudunk hozzáadni,
+              // paraméterként a kiválasztott járművet adjuk tovább
               adf.setVisible(true);
               ShowFrame.super.setVisible(false);
             }
@@ -154,8 +153,8 @@ public class ShowFrame extends JFrame {
             public void actionPerformed(
                 ActionEvent
                     e) { // Ha nincs kiválasztott elem, hibaüzenetet dob, egyébként a jlistből
-                         // behúzott kiválasztott rekord indexe alapján nyit egy ablakot amiben
-                         // szerkeszthetjük a rekordban tárolt adatokat.
+              // behúzott kiválasztott rekord indexe alapján nyit egy ablakot amiben
+              // szerkeszthetjük a rekordban tárolt adatokat.
               if (jlistadat.getSelectedIndex() == -1) {
                 JOptionPane.showMessageDialog(
                     null, "Nincs kiválasztott elem", "Hiba", JOptionPane.INFORMATION_MESSAGE);
@@ -174,8 +173,8 @@ public class ShowFrame extends JFrame {
             public void actionPerformed(
                 ActionEvent
                     e) { // Ha nincs kiválasztott elem, hibaüzenetet dob, egyébként- a jlistből
-                         // behúzott kiválasztott rekord indexe alapján törli a rekordot a
-                         // listából,újrahívja az ablakot, hogy frissüljenek az adatok.
+              // behúzott kiválasztott rekord indexe alapján törli a rekordot a
+              // listából,újrahívja az ablakot, hogy frissüljenek az adatok.
               if (jlistadat.getSelectedIndex() == -1) {
                 JOptionPane.showMessageDialog(
                     null, "Nincs kiválasztott elem", "Hiba", JOptionPane.INFORMATION_MESSAGE);

@@ -25,7 +25,7 @@ public class KezdoFrame extends JFrame {
     jcb = new JComboBox(jarmuvek.toArray()); // populate combobox
     DefaultComboBoxModel dml =
         new DefaultComboBoxModel(); // combobox model létrehozása,majd a listába, hogy a nevek
-                                    // jelenjenek meg
+    // jelenjenek meg
     for (int i = 0; i < jarmuvek.size(); i++) {
       dml.addElement(jarmuvek.get(i).getNev());
     }
@@ -54,16 +54,15 @@ public class KezdoFrame extends JFrame {
             for (int i = 0;
                 i < jarmuvek.size();
                 i++) { // A comboboxból behúzott kiválasztott elem indexe alapján kikeressük a
-                       // járművek listában, jarmu-ben tároljuk.
+              // járművek listában, jarmu-ben tároljuk.
               if (jarmuvek.get(i).getNev().equals(jcb.getSelectedItem())) {
                 jarmu = jarmuvek.get(i);
               }
             }
 
             ShowFrame shf =
-                new ShowFrame(
-                    jarmu); // A jármű adat megjelenítő ablaknak paraméterként odaadjuk a
-                            // kiválasztott járművet.
+                new ShowFrame(jarmu); // A jármű adat megjelenítő ablaknak paraméterként odaadjuk a
+            // kiválasztott járművet.
             shf.setVisible(true);
           }
         });
@@ -75,7 +74,7 @@ public class KezdoFrame extends JFrame {
             HozzaadFrame hf =
                 new HozzaadFrame(
                     jarmuvek); // Jármű hozzáadása ablak megjelenítése, annak paraméterként a
-                               // járművek lista átadása.
+            // járművek lista átadása.
             hf.setVisible(true);
             KezdoFrame.super.setVisible(false);
           }
@@ -85,9 +84,8 @@ public class KezdoFrame extends JFrame {
         new ActionListener() { // Törlés gombhoz rendelünk action-t.
           @Override
           public void actionPerformed(
-              ActionEvent
-                  e) { // Ha nincs kiválaszott elem hibaüzenetet kap a felh., egyébként a
-                       // kiválasztott elem indexe alapján töröljuk a járművek listából az elemet.
+              ActionEvent e) { // Ha nincs kiválaszott elem hibaüzenetet kap a felh., egyébként a
+            // kiválasztott elem indexe alapján töröljuk a járművek listából az elemet.
             if (jcb.getSelectedIndex() == -1) {
               JOptionPane.showMessageDialog(
                   null, "Nincs kiválasztott elem", "Hiba", JOptionPane.INFORMATION_MESSAGE);

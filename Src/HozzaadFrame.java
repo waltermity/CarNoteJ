@@ -40,7 +40,7 @@ public class HozzaadFrame extends JFrame {
     jcb = new JComboBox(array);
     DefaultComboBoxModel dml =
         new DefaultComboBoxModel(); // Cb model létrehozása, cb feltöltése, majd model cb-re
-                                    // illesztése.
+    // illesztése.
     for (int i = 0; i < 3; i++) {
       dml.addElement(array[i]);
     }
