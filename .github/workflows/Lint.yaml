@@ -1,0 +1,35 @@
+name: Java Lint and Format
+
+on: [push, pull_request]
+
+#set accordingly
+env:
+  JAVA_CODE_PATH: 'Src'
+  CHECKSTYLE_VERSION: '10.12.7'
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        token: ${{ secrets.JAVA_CI_TOKEN }}
+        
+    - name: Check Java formatting
+      uses: axel-op/googlejavaformat-action@v3
+      with:
+        args: "--replace"
+        skip-commit: false
+        files: ${{ env.JAVA_CODE_PATH }}/**/*.java
+        
+    - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.JAVA_CI_TOKEN }}
+      run: |
+        if [[ -n $(git status --porcelain) ]]; then
+          git add .
+          git commit -m "Apply automatic formatting"
+          git push "https://$GITHUB_TOKEN@github.com/${{ github.repository }}.git" HEAD:${{ github.head_ref }}
+        fi

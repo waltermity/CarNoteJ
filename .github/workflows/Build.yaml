@@ -1,0 +1,86 @@
+name: Java Build on Windows
+
+on: [push, pull_request]
+
+#set accordingly
+env:
+  JAVA_CODE_PATH: 'Src'
+  JAVA_MAIN_CLASS: 'Main'
+  JUNIT_VERSION: '1.9.3'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.JAVA_CI_TOKEN }}
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Download JUnit
+        shell: powershell
+        run: |
+            New-Item -ItemType Directory -Force -Path lib
+            $Headers = @{
+                "Accept" = "application/java-archive"
+            }
+            # Corrected URL
+            $junitUrl = "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/${{ env.JUNIT_VERSION }}/junit-platform-console-standalone-${{ env.JUNIT_VERSION }}.jar"
+
+            $xstreamUrl = "https://repo1.maven.org/maven2/com/thoughtworks/xstream/xstream/1.4.21/xstream-1.4.21.jar"
+            $testRequest = Invoke-WebRequest -Uri $junitUrl -Method Head -ErrorAction SilentlyContinue
+            if ($testRequest.StatusCode -ne 200) {
+                Write-Error "JUnit download URL is not accessible"
+                exit 1
+            }
+            # Download if URL exists
+            try {
+                Invoke-WebRequest -Uri $junitUrl -OutFile "lib\junit-platform-console-standalone.jar" -Headers $Headers
+                if (-not(Test-Path "lib\junit-platform-console-standalone.jar")) {
+                    Write-Error "Failed to download JUnit"
+                    exit 1
+                }
+                Write-Host "JUnit downloaded successfully"
+            }
+            catch {
+                Write-Error "Failed to download JUnit: $_"
+                exit 1
+            }
+
+            # Download XStream
+            try {
+                Write-Host "Downloading XStream..."
+                Invoke-WebRequest -Uri $xstreamUrl -OutFile "lib\xstream.jar" -Headers $Headers
+                if (-not(Test-Path "lib\xstream.jar")) {
+                    Write-Error "Failed to download XStream"
+                    exit 1
+                }
+                Write-Host "XStream downloaded successfully"
+            }
+            catch {
+                Write-Error "Failed to download XStream: $_"
+                exit 1
+            }
+
+      - name: Compile Java code with JUnit
+        shell: cmd
+        run: |
+            javac -cp "lib\*;%JAVA_CODE_PATH%" %JAVA_CODE_PATH%\*.java
+
+      - name: Run Tests
+        shell: cmd
+        run: |
+            java -jar lib\junit-platform-console-standalone.jar --class-path "%JAVA_CODE_PATH%" --scan-class-path
+
+      - name: Run Main Application
+        shell: cmd
+        run: |
+            java -cp "%JAVA_CODE_PATH%;lib\*" %JAVA_MAIN_CLASS%
